@@ -1,16 +1,31 @@
 <script setup>
 import { bookStore } from '../stores/books'
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, computed } from 'vue'
 const books = bookStore()
+const updatedBook = ref()
+
+const editBookId = ref(null)
 
 const newBook = reactive({
     'name': '',
     'author': ''
 })
 
+
+
 onMounted(() => {
     console.log("Booklist mounted")
 })
+
+function updateBook() {
+    books.editBook(updatedBook.value)
+    editBookId.value = null
+}
+
+function startToUpdateBook(book) {
+    updatedBook.value = JSON.parse(JSON.stringify(book))
+    editBookId.value = book.id
+}
 
 </script>
 
@@ -52,19 +67,37 @@ onMounted(() => {
         </thead>
         <tbody>
             <tr v-for="book in books.books" :key="book.id">
-                <td>{{ book.id }}</td>
-                <td>{{ book.name }}</td>
-                <td>{{ book.author }}</td>
+                <td>
+                    {{ book.id }}
+                </td>
+                <td>
+                    <template v-if="editBookId != book.id">{{ book.name }}</template>
+                    <input v-if="editBookId === book.id" type="text" class="form-control" id="bookName"
+                        v-model="updatedBook.name">
+                </td>
+                <td>
+                    <template v-if="editBookId != book.id">{{ book.author }}</template>
+                    <input v-if="editBookId === book.id" type="text" class="form-control" id="bookAuthor"
+                        v-model="updatedBook.author">
+                </td>
                 <td>
                     <div class="d-flex justify-content-center">
-                        <router-link :to="{ name: 'EditBook', params: { id: book.id } }">
-                            <button class="btn btn-outline-primary btn-sm me-2">
+                        <template v-if="editBookId != book.id">
+                            <button @click="startToUpdateBook(book)" class="btn btn-outline-primary btn-sm me-2">
                                 <i class="fas fa-pencil-alt"></i>
                             </button>
-                        </router-link>
-                        <button class="btn btn-outline-danger btn-sm" @click="books.removeBook(book)">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
+                            <button class="btn btn-outline-danger btn-sm" @click="books.removeBook(book)">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </template>
+                        <template v-if="editBookId === book.id">
+                            <button class="btn btn-outline-primary btn-sm me-2" @click="updateBook()">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm" @click="editBookId = null">
+                                <i class="fas fa-xmark"></i>
+                            </button>
+                        </template>
                     </div>
                 </td>
             </tr>

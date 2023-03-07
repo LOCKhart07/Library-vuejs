@@ -20,7 +20,7 @@ export const bookStore = defineStore({
             this.books.splice(this.books.findIndex(a => a.id === bookToRemove.id), 1)
         },
         editBook(bookToEdit) {
-            this.books[this.getBookByID(bookToEdit.id)] = bookToEdit
+            this.books[this.books.findIndex(x => x.id === bookToEdit.id)] = bookToEdit
         },
         getBookByID(id) {
             return this.books.find(x => x.id === id);
