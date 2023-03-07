@@ -35,14 +35,14 @@ function startToUpdateBook(book) {
             <div class="form-group row">
                 <label for="bookName" class="col-sm-2 col-form-label">Title:</label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" id="bookName" v-model.trim="newBook.name">
+                    <input required type="text" class="form-control" id="bookName" v-model.trim="newBook.name">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="authorName" class="col-sm-2 col-form-label">Author:</label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" id="authorName" v-model.trim="newBook.author">
+                    <input required type="text" class="form-control" id="authorName" v-model.trim="newBook.author">
                 </div>
                 <div class="col-sm-3 row">
                     <button class="btn btn-outline-primary col-lg-12" type="submit">Add Book</button>
@@ -66,18 +66,19 @@ function startToUpdateBook(book) {
             </tr>
         </thead>
         <tbody>
+
             <tr v-for="book in books.books" :key="book.id">
                 <td>
                     {{ book.id }}
                 </td>
                 <td>
                     <template v-if="editBookId != book.id">{{ book.name }}</template>
-                    <input v-if="editBookId === book.id" type="text" class="form-control" id="bookName"
+                    <input required v-if="editBookId === book.id" type="text" class="form-control" id="bookName"
                         v-model="updatedBook.name">
                 </td>
                 <td>
                     <template v-if="editBookId != book.id">{{ book.author }}</template>
-                    <input v-if="editBookId === book.id" type="text" class="form-control" id="bookAuthor"
+                    <input required v-if="editBookId === book.id" type="text" class="form-control" id="bookAuthor"
                         v-model="updatedBook.author">
                 </td>
                 <td>
