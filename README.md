@@ -5,6 +5,8 @@ A simple application wherein you can keep a track of your books. You can add, de
 
 
 ## Demo
+### Live Application
+https://lockhart07.github.io/Library-vuejs/
 ### Main Page 
 ![Main Page](https://github.com/LOCKhart07/Library-vuejs/blob/main/demo/images/main.jpg?raw=true)
 
