@@ -1,22 +1,10 @@
 <script setup>
-// import HelloWorld from './components/HelloWorld.vue'
-import { useRouter } from 'vue-router';
-const router = useRouter()
+import BookList from './views/Booklist.vue'
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-      <RouterLink class="navbar-brand" :to="{ name: 'BookList' }">BookList</RouterLink>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto"></ul>
-      </div>
-    </div>
-  </nav>
-
-  <div>
-    <RouterView></RouterView>
-  </div>
+  <h1>Library</h1>
+  <BookList></BookList>
 </template>
 
 <style scoped></style>
