@@ -5,10 +5,13 @@ A simple application wherein you can keep a track of your books. You can add, de
 
 
 ## Demo
+### Main Page 
 ![Main Page](https://github.com/LOCKhart07/Library-vuejs/blob/main/demo/images/main.jpg?raw=true)
 
+### Adding New Books
 ![Adding Books](https://github.com/LOCKhart07/Library-vuejs/blob/main/demo/gifs/add-book.gif?raw=true)
 
+### Editing Books
 ![Editing Books](https://github.com/LOCKhart07/Library-vuejs/blob/main/demo/gifs/edit-book.gif?raw=true)
 ## Run Locally
 
